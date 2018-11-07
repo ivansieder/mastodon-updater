@@ -1,4 +1,4 @@
-# Twitter updater
+# Twitter updater 🐦
 A small utility to periodically update your Twitter profile with dynamic data (currently still very limited, PRs welcome 🎉).
 
 ## Requirements

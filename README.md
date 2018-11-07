@@ -1,5 +1,5 @@
 # Twitter updater 🐦
-A small utility to periodically update your Twitter profile with dynamic data (currently still very limited, PRs welcome 🎉).
+A small utility to periodically update your Twitter profile with dynamic data (For a demo, see my [Twitter profile](https://twitter.com/ivansieder).
 
 ## Requirements
 - Node.js and NPM installed

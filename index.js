@@ -1,41 +1,27 @@
-const qs = require("querystring");
-const OAuth = require("oauth");
+import querystring from "node:querystring";
 
 // Configuration
-const apiKey = "API_KEY";
-const apiSecret = "API_SECRET";
-const accessToken = "ACCESS_TOKEN";
-const accessTokenSecret = "ACCESS_TOKEN_SECRET";
-const birthday = "YYYY-MM-DD HH:MM:SS"
-const description = "%ageInDays% days old. Can't we all just live long and prosper, while the force is with us?"
+const accessToken = "";
+const mastodonBaseUrl = ""
 
-// Edigint below is reserved only for the brave ones
-
-var oauth = new OAuth.OAuth(
-  "https://api.twitter.com/oauth/request_token",
-  "https://api.twitter.com/oauth/access_token",
-  apiKey,
-  apiSecret,
-  "1.0A",
-  null,
-  "HMAC-SHA1"
-);
+const birthday = "1994-12-30 16:00:00"
+const description = "%ageInDays% days old. CTO & tech-lead @ SiMedia.com // Tech enthusiast // Hacking around in JavaScript, Node.js, Vue.js, Serverless, GraphQL"
 
 const birthdayDate = new Date(birthday);
 const nowDate = new Date();
 const difference = nowDate - birthdayDate;
 const ageInDays = parseInt(difference / (1000 * 3600 * 24));
-const preparedDescription = qs.escape(description.replace("%ageInDays%", ageInDays));
+const preparedDescription = description.replace("%ageInDays%", ageInDays);
 
-return new Promise((resolve, reject) => {
-  oauth.post(
-    "https://api.twitter.com/1.1/account/update_profile.json?description=" + preparedDescription,
-    accessToken,
-    accessTokenSecret,
-    null,
-    null,
-    function (e) {
-      if (e) reject(e);
-      resolve();
-    });
-})
+const response = await fetch(mastodonBaseUrl + "/api/v1/accounts/update_credentials", {
+  method: "PATCH",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Authorization": `Bearer ${accessToken}`,
+  },
+  body: new URLSearchParams({
+    note: preparedDescription,
+  }),
+});
+
+console.log(response)

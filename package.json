@@ -1,14 +1,9 @@
 {
-  "name": "twitter-updater",
+  "name": "mastodon-updater",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"nobody got time for tests\""
-  },
+  "type": "module",
   "author": "Ivan Sieder <ivan@sieder.xyz>",
-  "license": "ISC",
-  "dependencies": {
-    "oauth": "^0.9.15"
-  }
+  "license": "ISC"
 }
